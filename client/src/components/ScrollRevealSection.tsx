@@ -1,4 +1,5 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { motion } from "framer-motion";
 import { ReactNode } from "react";
 
 interface ScrollRevealSectionProps {
@@ -15,16 +16,22 @@ export function ScrollRevealSection({
   const { ref, isVisible } = useScrollReveal();
 
   return (
-    <div
+    <motion.div
       ref={ref}
-      className={`${
-        isVisible ? "animate-fade-in-up" : "opacity-0"
-      } ${className}`}
-      style={{
-        animationDelay: isVisible ? `${delay}ms` : "0ms",
+      initial={false}
+      animate={
+        isVisible
+          ? { opacity: 1, y: 0, scale: 1 }
+          : { opacity: 0, y: 24, scale: 0.98 }
+      }
+      transition={{
+        duration: 0.6,
+        delay: isVisible ? delay / 1000 : 0,
+        ease: [0.22, 1, 0.36, 1],
       }}
+      className={className}
     >
       {children}
-    </div>
+    </motion.div>
   );
 }

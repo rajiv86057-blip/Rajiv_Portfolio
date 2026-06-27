@@ -3,7 +3,8 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ScrollRevealSection } from "@/components/ScrollRevealSection";
 import { DiagonalDivider } from "@/components/DiagonalDivider";
-import { ChevronDown, Mail, Linkedin, Github, Download, Star, Users, Code2, Cloud, Database, BarChart3, Zap } from "lucide-react";
+import { ChevronDown, Mail, Linkedin, Github, Download, Star, Users, Code2, Cloud, Database, BarChart3, Zap, Sparkles, BrainCircuit, Orbit } from "lucide-react";
+import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 /**
@@ -25,6 +26,12 @@ export default function Home() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const heroHighlights = [
+    { value: "3+", label: "Years building AI systems" },
+    { value: "5k+", label: "Students trained" },
+    { value: "50+", label: "Projects shipped" },
+  ];
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
@@ -73,59 +80,140 @@ export default function Home() {
       </header>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
-        <div
-          className="absolute inset-0 z-0"
-          style={{
-            backgroundImage: "url('/manus-storage/hero-background_fd9b09f9.png')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            opacity: 0.6,
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/0 via-background/50 to-background z-1" />
+      <section className="relative flex min-h-screen items-center justify-center overflow-hidden pt-16">
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.18),transparent_32%),radial-gradient(circle_at_80%_20%,rgba(192,132,252,0.18),transparent_24%),linear-gradient(135deg,rgba(3,7,18,0.96),rgba(8,15,33,0.95))]" />
+          <div className="mesh-grid absolute inset-0 opacity-30" />
+          <motion.div
+            className="aurora-orb absolute -left-10 top-20 h-72 w-72 rounded-full bg-cyan-400/25 blur-3xl"
+            animate={{ x: [0, 34, 0], y: [0, -18, 0], scale: [1, 1.06, 1] }}
+            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.div
+            className="aurora-orb absolute right-0 top-10 h-80 w-80 rounded-full bg-fuchsia-500/20 blur-3xl"
+            animate={{ x: [0, -25, 0], y: [0, 24, 0], scale: [1, 1.1, 1] }}
+            transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.div
+            className="absolute bottom-10 left-1/2 h-40 w-[70%] -translate-x-1/2 rounded-full bg-cyan-500/10 blur-3xl"
+            animate={{ opacity: [0.3, 0.55, 0.3], scale: [0.95, 1.02, 0.95] }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          />
+        </div>
+        <div className="absolute inset-0 z-1 bg-gradient-to-b from-background/0 via-background/35 to-background" />
 
-        <div className="container relative z-10 text-center max-w-4xl mx-auto px-4">
-          <div className="mb-6 inline-block animate-fade-in">
-            <Badge className="bg-accent/20 text-accent border-accent/50 px-4 py-1.5">
-              <Zap className="w-3 h-3 mr-2" />
-              AI Engineer & Data Scientist
-            </Badge>
-          </div>
-
-          <h1 className="text-5xl md:text-7xl font-bold font-sora mb-6 leading-tight animate-fade-in-up" style={{ animationDelay: "100ms" }}>
-            Transforming Data into{" "}
-            <span className="bg-gradient-to-r from-accent via-secondary to-accent bg-clip-text text-transparent">
-              Intelligent Solutions
-            </span>
-          </h1>
-
-          <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto animate-fade-in-up" style={{ animationDelay: "200ms" }}>
-            Certified SAP Data Engineer Trainer with 3+ years of expertise in Python, AI, Machine Learning, and Cloud Technologies. Trained 5000+ students and built production-grade AI solutions.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12 animate-fade-in-up" style={{ animationDelay: "300ms" }}>
-            <Button
-              size="lg"
-              className="bg-accent hover:bg-accent/90 text-accent-foreground"
-              onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
+        <div className="container relative z-10 mx-auto max-w-6xl px-4">
+          <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+              className="text-center lg:text-left"
             >
-              View Projects
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-accent/50 hover:bg-accent/10"
-              onClick={() => window.open("mailto:rajeevranjanmohanupadhyay@gmail.com")}
+              <div className="mb-6 inline-block">
+                <Badge className="border-accent/50 bg-accent/20 px-4 py-1.5 text-accent">
+                  <Sparkles className="mr-2 h-3 w-3" />
+                  AI Engineer & Data Scientist
+                </Badge>
+              </div>
+
+              <h1 className="mb-6 text-5xl font-bold leading-tight text-foreground md:text-7xl font-sora">
+                Turning bold ideas into{" "}
+                <span className="bg-gradient-to-r from-accent via-secondary to-accent bg-clip-text text-transparent">
+                  high-impact intelligence
+                </span>
+              </h1>
+
+              <p className="mx-auto max-w-2xl text-lg text-muted-foreground md:text-xl lg:mx-0">
+                Certified SAP Data Engineer Trainer with 3+ years of expertise in Python, AI, Machine Learning, and Cloud Technologies. I build systems that feel premium, scale fast, and deliver measurable value.
+              </p>
+
+              <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row lg:justify-start">
+                <Button
+                  size="lg"
+                  className="bg-accent text-accent-foreground transition-transform duration-300 hover:-translate-y-1 hover:bg-accent/90"
+                  onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
+                >
+                  View Projects
+                </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-accent/50 transition-all duration-300 hover:-translate-y-1 hover:bg-accent/10"
+                  onClick={() => window.open("mailto:rajeevranjanmohanupadhyay@gmail.com")}
+                >
+                  Contact Me
+                </Button>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+              className="mx-auto w-full max-w-xl"
             >
-              Contact Me
-            </Button>
+              <div className="rounded-[30px] border border-white/10 bg-white/5 p-5 shadow-[0_0_80px_rgba(34,211,238,0.15)] backdrop-blur-2xl">
+                <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-black/20 px-4 py-3">
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <span className="inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400" />
+                    Live portfolio signal
+                  </div>
+                  <div className="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1 text-xs font-medium text-cyan-200">
+                    Premium build
+                  </div>
+                </div>
+
+                <div className="mt-4 rounded-2xl border border-cyan-400/20 bg-gradient-to-br from-cyan-400/10 to-fuchsia-500/10 p-4">
+                  <div className="grid gap-3 sm:grid-cols-3">
+                    {heroHighlights.map((item, index) => (
+                      <motion.div
+                        key={item.label}
+                        initial={{ opacity: 0, y: 12 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.4 + index * 0.1 }}
+                        className="rounded-2xl border border-white/10 bg-background/70 p-3"
+                      >
+                        <div className="text-xl font-semibold text-accent">{item.value}</div>
+                        <p className="mt-1 text-xs text-muted-foreground">{item.label}</p>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                  <div className="rounded-2xl border border-white/10 bg-background/70 p-4">
+                    <div className="flex items-center gap-2 text-sm text-accent">
+                      <BrainCircuit className="h-4 w-4" />
+                      Agentic AI
+                    </div>
+                    <p className="mt-2 text-sm text-muted-foreground">
+                      Intelligent workflows built with production-grade architecture and elegant UX.
+                    </p>
+                  </div>
+                  <div className="rounded-2xl border border-white/10 bg-background/70 p-4">
+                    <div className="flex items-center gap-2 text-sm text-accent">
+                      <Orbit className="h-4 w-4" />
+                      Cloud deployment
+                    </div>
+                    <p className="mt-2 text-sm text-muted-foreground">
+                      Deploying scalable solutions across Azure, SAP, and modern cloud platforms.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
           </div>
 
-          {/* Scroll Indicator */}
-          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <ChevronDown className="w-6 h-6 text-accent" />
-          </div>
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+            className="mt-14 flex justify-center"
+          >
+            <div className="rounded-full border border-white/10 bg-white/5 p-2 backdrop-blur-xl">
+              <ChevronDown className="h-5 w-5 text-accent" />
+            </div>
+          </motion.div>
         </div>
       </section>
 
